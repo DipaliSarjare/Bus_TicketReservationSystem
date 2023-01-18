@@ -1,0 +1,42 @@
+
+Admin
+
+Table BusInfo :
+====================
+create table BusInfo(
+    busNo int primary key,
+    bName varchar(20) not null unique,
+    routeFrom varchar(20) not null,
+    routeTo varchar(20) not null,
+    bType varchar(5) not null check (bType = 'AC' OR bType = 'NonAC'),
+    departure Datetime not null,
+    arrival Datetime not null,
+    totalSeats int not null,
+    availSeats int not null,
+    TicketCharge int not null
+);
+
+Table Customer :
+=====================
+create table customer (
+    cId int primary key auto_increment,
+    firstName varchar(20) not null,
+    lastName varchar(20) not null,
+    username varchar(20) not null unique,
+    password varchar(20) not null,
+    address varchar(20) not null,
+    mobile varchar(10) not null
+);
+
+Table TicketBooking :
+======================
+create table TicketBooking(
+bId int primary key auto_increment,
+cId int not null,
+busNo int not null,
+seatFrom int not null, 
+seatTo int not null, 
+status boolean default false,
+foreign key (cId) references Customer(cId),
+foreign key (busNo) references BusInfo(busNo)
+);
