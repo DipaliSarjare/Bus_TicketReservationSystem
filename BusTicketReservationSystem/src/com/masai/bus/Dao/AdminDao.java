@@ -10,6 +10,10 @@ public interface AdminDao {
 	public String adminLogin(String username, String password);
 	
     public String addBusDetails(BusDetails bus);
+    
+    public String confirmationSeatsStatus(int cId);
+	
+	public void viewAllTickets();
 
 
 }

@@ -2,6 +2,7 @@ package com.masai.bus.Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.masai.bus.models.BusDetails;
@@ -50,7 +51,57 @@ public  class AdminDaoImpl implements AdminDao {
 		return message;
 	}
 
+	@Override
+	public String confirmationSeatsStatus(int cId) {
+		
+       String message = "Seat not  confirm for customer Id : " + cId;
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			PreparedStatement ps = conn.prepareStatement("update TicketBooking set status = true where cId = ?");
+			ps.setInt(1, cId);
+			
+			int x = ps.executeUpdate();
+			if (x > 0) message = "Seat successfully Confirm for customer Id : " + cId;
+			
+		}
+		catch (SQLException e) {
+			message = e.getMessage();
+		}
+		
+		return message;
+	}
 
+	@Override
+	public void viewAllTickets() {
+		
+	boolean flag = false;
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			PreparedStatement ps1 = conn.prepareStatement("select * from TicketBooking");
+			
+			ResultSet rs1 = ps1.executeQuery();
+			
+			while (rs1.next()) {
+				flag = true;
+				
+				System.out.println("----------------------------------------------------");
+				System.out.println("Bus Id : " + rs1.getInt("bId"));
+				System.out.println("Bus No : " + rs1.getInt("busNo"));
+				System.out.println("Total tickets : " + (rs1.getInt("seatTo") - rs1.getInt("seatFrom") + 1));
+				if (rs1.getInt("status") == 1) System.out.println("Status : Booked");
+				else System.out.println("Status : Pending");
+				
+				System.out.println("----------------------------------------------------");
+			}
+			
+			if (flag == false) System.out.println("No tickets found");
+		}
+		catch (SQLException s){
+			System.out.println(s.getMessage());
+		}
+		
+	}
 
+		
 
 }

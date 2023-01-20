@@ -88,7 +88,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 		try (Connection conn = DBUtil.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("select * from bus where bName = ?");
+			PreparedStatement ps = conn.prepareStatement("select * from busInfo where bName = ?");
 			ps.setString(1, bName);
 			
 			ResultSet rs = ps.executeQuery();
@@ -99,7 +99,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				int totalSeats = rs.getInt("totalSeats");
 				int availSeats = rs.getInt("availSeats");
 				Date departure = rs.getDate("departure");
-				int ticketCharge = rs.getInt("fare");
+				int ticketCharge = rs.getInt("TicketCharge");
 				
 				PreparedStatement ps1 = conn.prepareStatement("select datediff(?,current_date()) as date");
 				ps1.setDate(1,departure);
