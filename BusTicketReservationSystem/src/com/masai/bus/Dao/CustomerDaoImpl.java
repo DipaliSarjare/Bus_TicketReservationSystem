@@ -118,7 +118,7 @@ public class CustomerDaoImpl implements CustomerDao {
 					int seatTo = seatFrom + noseat -1;
 					ticketCharge = ticketCharge * noseat;
 					
-					PreparedStatement ps2 = conn.prepareStatement("insert into booking(cusId, busNo, seatFrom, seatTo) values (?, ?, ?, ?)");
+					PreparedStatement ps2 = conn.prepareStatement("insert into TicketBooking(cusId, busNo, seatFrom, seatTo) values (?, ?, ?, ?)");
 					ps2.setInt(1, cId);
 					ps2.setInt(2, busNo);
 					ps2.setInt(3, seatFrom);
@@ -128,7 +128,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 					if (x > 0) {
 						
-						PreparedStatement ps3 = conn.prepareStatement("update bus set availseats = ? where busNo = ?");
+						PreparedStatement ps3 = conn.prepareStatement("update busInfo set availseats = ? where busNo = ?");
 						availSeats = availSeats - noseat;
 						ps3.setInt(1, availSeats);
 						ps3.setInt(2, busNo);
@@ -169,7 +169,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 		try (Connection conn = DBUtil.provideConnection()){
 				
-				PreparedStatement ps = conn.prepareStatement("select * from bus where bName = ?");
+				PreparedStatement ps = conn.prepareStatement("select * from busInfo where bName = ?");
 				ps.setString(1, bName);
 				
 				ResultSet rs = ps.executeQuery();
