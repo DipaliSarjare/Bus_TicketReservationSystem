@@ -8,9 +8,9 @@ import com.masai.bus.Dao.CustomerDaoImpl;
 import com.masai.bus.exception.CustomerException;
 import com.masai.bus.models.Customer;
 
-public class CustomerLogin {
+public class CustomerLoginUseCase {
 	
-public static Customer CusLogin() {
+public static Customer CustomerLogin() {
 		
 		Customer customer = null;
 		

@@ -118,7 +118,7 @@ public class CustomerDaoImpl implements CustomerDao {
 					int seatTo = seatFrom + noseat -1;
 					ticketCharge = ticketCharge * noseat;
 					
-					PreparedStatement ps2 = conn.prepareStatement("insert into TicketBooking(cusId, busNo, seatFrom, seatTo) values (?, ?, ?, ?)");
+					PreparedStatement ps2 = conn.prepareStatement("insert into TicketBooking(cId, busNo, seatFrom, seatTo) values (?, ?, ?, ?)");
 					ps2.setInt(1, cId);
 					ps2.setInt(2, busNo);
 					ps2.setInt(3, seatFrom);
