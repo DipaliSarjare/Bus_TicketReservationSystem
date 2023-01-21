@@ -48,6 +48,6 @@ Note: Once the seat is booked, automatically the seat would be deducted
 
 <h3> Flow Diagram</h3>
 
-![flowDiagram drawio](https://user-images.githubusercontent.com/105915562/213869887-020fecd6-6f26-4511-9524-b3ac6a44a516.png)
+![FlowDiagram drawio](https://user-images.githubusercontent.com/105915562/213870012-54a46d44-5006-41f6-8bdb-7e0784381c04.png)
 
 
